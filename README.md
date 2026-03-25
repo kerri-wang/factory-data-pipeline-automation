@@ -1,50 +1,90 @@
-# Factory Data Pipeline Automation
+## Pipeline Flow
 
-A simple prototype ETL project that simulates factory order and delivery reporting using synthetic data.
+### 1. Raw Data Generation
 
-## Project Overview
+Synthetic raw data is generated for:
+- factory orders
+- factory deliveries
 
-This project demonstrates a lightweight factory data pipeline built for portfolio and interview purposes. It uses synthetic order and delivery data to simulate a realistic reporting workflow, including raw data ingestion, data cleaning, KPI generation, data quality checks, and simple anomaly monitoring.
+The raw data intentionally includes:
+- duplicate records
+- missing supplier IDs
+- invalid quantities
+- inconsistent status values
+- orphan deliveries
+- one low-volume day for anomaly detection
 
-## Business Problem
+### 2. Data Cleaning
 
-Factory operations data often comes from multiple sources and may contain duplicates, missing fields, inconsistent statuses, and reporting delays. Manual reporting can be slow and error-prone.
+The pipeline performs:
+- duplicate removal
+- date parsing
+- status standardization
+- invalid quantity filtering
+- joining deliveries back to orders
 
-This prototype shows how a small ETL pipeline can automate daily reporting and improve data reliability.
+### 3. KPI Output
 
-## Project Goals
+The pipeline produces a daily KPI table with:
+- total orders
+- total deliveries
+- on-time delivery rate
+- average delivery delay days
 
-- Generate synthetic factory raw data
-- Clean and standardize order and delivery records
-- Build daily KPI reporting outputs
-- Run basic data quality checks
-- Detect unusual drops in order volume
+### 4. Monitoring
 
-## Tech Stack
+The project also generates:
+- a data quality report
+- an alert log for large day-over-day order volume drops
 
-- Python
-- Pandas
-- NumPy
-- Google Colab
-- GitHub
+## Output Files
 
-## Project Structure
+### Clean Table
+`data/clean/factory_orders_clean.csv`
 
-```text
-factory-data-pipeline-automation/
-├── README.md
-├── requirements.txt
-├── src/
-│   ├── generate_fake_data.py
-│   ├── pipeline.py
-│   └── checks.py
-└── data/
-    ├── raw/
-    │   ├── factory_orders_raw.csv
-    │   └── factory_deliveries_raw.csv
-    ├── clean/
-    │   └── factory_orders_clean.csv
-    └── output/
-        ├── daily_factory_kpi.csv
-        ├── dq_report.csv
-        └── alert_log.csv
+### KPI Table
+`data/output/daily_factory_kpi.csv`
+
+### Data Quality Report
+`data/output/dq_report.csv`
+
+### Alert Log
+`data/output/alert_log.csv`
+
+## KPI Visualization
+
+![Daily Total Orders](images/daily_total_orders.png)
+
+## Example Data Quality Checks
+
+- duplicate order ID check
+- missing supplier ID check
+- invalid order quantity check
+- orphan delivery check
+
+## Example Alert Rule
+
+An alert is triggered when daily total orders drop by more than 40% compared with the previous day.
+
+## How to Run
+
+### Step 1: Generate raw data
+Run `generate_fake_data.py`
+
+### Step 2: Build clean table and KPI table
+Run `pipeline.py`
+
+### Step 3: Run data quality checks and alert logic
+Run `checks.py`
+
+## Why I Built This Project
+
+I created this project as a public prototype inspired by factory data automation work. The goal was to turn a more complex internal workflow into a simplified, interview-friendly project that still demonstrates ETL design, KPI reporting, data quality checks, and monitoring.
+
+## Future Improvements
+
+- Add incremental processing with a watermark file
+- Add a dashboard layer
+- Add unit tests
+- Add more factory domains such as inventory and returns
+- Deploy the pipeline in a cloud environment
