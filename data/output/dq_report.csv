@@ -1,0 +1,5 @@
+check_name,table_name,failed_count,status,check_time
+duplicate_order_id_check,factory_orders_raw,73,FAIL,2026-03-25 05:31:03
+missing_supplier_id_check,factory_orders_raw,50,FAIL,2026-03-25 05:31:03
+invalid_order_quantity_check,factory_orders_raw,25,FAIL,2026-03-25 05:31:03
+orphan_delivery_check,factory_deliveries_raw,20,FAIL,2026-03-25 05:31:03

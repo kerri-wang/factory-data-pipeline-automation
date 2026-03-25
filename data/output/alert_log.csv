@@ -1,0 +1,5 @@
+alert_time,alert_type,date,current_value,previous_value,pct_change,message
+2026-03-25 05:31:03,ORDER_VOLUME_DROP,2024-01-18,28,51.0,-0.451,Daily total_orders dropped by more than 40% compared with the previous day.
+2026-03-25 05:31:03,ORDER_VOLUME_DROP,2024-02-05,10,44.0,-0.7727,Daily total_orders dropped by more than 40% compared with the previous day.
+2026-03-25 05:31:03,ORDER_VOLUME_DROP,2024-02-07,33,56.0,-0.4107,Daily total_orders dropped by more than 40% compared with the previous day.
+2026-03-25 05:31:03,ORDER_VOLUME_DROP,2024-02-24,18,38.0,-0.5263,Daily total_orders dropped by more than 40% compared with the previous day.
